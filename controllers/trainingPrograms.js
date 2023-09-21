@@ -1,11 +1,17 @@
-const trainingPrograms = require('../routes/trainingPrograms');
+const TrainingProgram = require('../models/TraningProgram');
 
 // @desc        Get all training programs
 // @route       GET /api/v1/training-programs
 // @access      Public
 exports.getTrainingPrograms = async (req, res, next) => {
   try {
-    res.status(200).json({ success: true, data: 'Get all training programs' });
+    const trainingPrograms = await TrainingProgram.find();
+
+    if (!trainingPrograms) {
+      return res.status(400).json({ success: false });
+    }
+
+    res.status(200).json({ success: true, data: trainingPrograms });
   } catch (err) {
     res.status(400).json({ success: false });
   }
@@ -16,9 +22,13 @@ exports.getTrainingPrograms = async (req, res, next) => {
 // @access      Public
 exports.getTrainingProgram = async (req, res, next) => {
   try {
-    res
-      .status(200)
-      .json({ success: true, data: 'Get single training program' });
+    const trainingProgram = await TrainingProgram.findById(req.params.id);
+
+    if (!trainingProgram) {
+      return res.status(400).json({ success: false });
+    }
+
+    res.status(200).json({ success: true, data: trainingProgram });
   } catch (err) {
     res.status(400).json({ success: false });
   }
@@ -29,9 +39,13 @@ exports.getTrainingProgram = async (req, res, next) => {
 // @access      Private
 exports.createTrainingProgram = async (req, res, next) => {
   try {
-    res
-      .status(201)
-      .json({ success: true, data: 'Create new training program' });
+    const trainingProgram = await TrainingProgram.create(req.body);
+
+    if (!trainingProgram) {
+      return res.status(400).json({ success: false });
+    }
+
+    res.status(201).json({ success: true, data: trainingProgram });
   } catch (err) {
     res.status(400).json({ success: false });
   }
@@ -42,7 +56,20 @@ exports.createTrainingProgram = async (req, res, next) => {
 // @access      Private
 exports.updateTrainingProgram = async (req, res, next) => {
   try {
-    res.status(200).json({ success: true, data: 'Update a training program' });
+    const trainingProgram = await TrainingProgram.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!trainingProgram) {
+      return res.status(400).json({ success: false });
+    }
+
+    res.status(200).json({ success: true, data: trainingProgram });
   } catch (err) {
     res.status(400).json({ success: false });
   }
@@ -53,7 +80,15 @@ exports.updateTrainingProgram = async (req, res, next) => {
 // @access      Private
 exports.deleteTrainingProgram = async (req, res, next) => {
   try {
-    res.status(200).json({ success: true, data: 'Delete a training program' });
+    const trainingProgram = await TrainingProgram.findByIdAndDelete(
+      req.params.id
+    );
+
+    if (!trainingProgram) {
+      return res.status(400).json({ success: false });
+    }
+
+    res.status(200).json({ success: true, data: {} });
   } catch (err) {
     res.status(400).json({ success: false });
   }

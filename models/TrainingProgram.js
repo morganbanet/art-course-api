@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const geocoder = require('../utils/geocoder');
+const slugify = require('slugify');
 
-// @Todo: Create models and schemas
 const TrainingProgramSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -34,7 +35,7 @@ const TrainingProgramSchema = new mongoose.Schema({
   location: {
     type: {
       type: String,
-      enum: ['point'],
+      enum: ['Point'],
     },
     coordinates: {
       type: [Number],
@@ -43,7 +44,7 @@ const TrainingProgramSchema = new mongoose.Schema({
     formattedAddress: String,
     street: String,
     city: String,
-    county: String,
+    state: String,
     postcode: String,
     country: String,
   },
@@ -75,6 +76,32 @@ const TrainingProgramSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+});
+
+// Create slug from training program name
+TrainingProgramSchema.pre('save', function (next) {
+  this.slug = slugify(this.name, { lower: true });
+  next();
+});
+
+// Create location field
+TrainingProgramSchema.pre('save', async function (next) {
+  const geoLocate = await geocoder.geocode(this.address);
+  this.location = {
+    type: 'Point',
+    coordinates: [geoLocate[0].longitude, geoLocate[0].latitude],
+    formattedAddress: geoLocate[0].formattedAddress,
+    street: geoLocate[0].streetName,
+    city: geoLocate[0].city,
+    state: geoLocate[0].stateCode,
+    postcode: geoLocate[0].zipcode,
+    country: geoLocate[0].countryCode,
+  };
+
+  // Prevent storing client submitted address
+  this.address = undefined;
+
+  next();
 });
 
 module.exports = mongoose.model('Training Program', TrainingProgramSchema);

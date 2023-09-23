@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const connectDB = require('./config/db');
+const errorHandler = require('./middleware/errorHandler');
 
 // Dotenv config
 require('dotenv').config({ path: './config/config.env' });
@@ -22,6 +23,9 @@ if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
 // Route mounting
 app.use('/api/v1/training-programs', trainingPrograms);
+
+// Error middleware
+app.use(errorHandler);
 
 // Run server
 const server = app.listen(PORT, () => {

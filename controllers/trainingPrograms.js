@@ -1,6 +1,7 @@
 const TrainingProgram = require('../models/TrainingProgram');
 const ErrorResponse = require('../utils/ErrorResponse');
 const asyncHandler = require('../middleware/asyncHandler');
+const geocoder = require('../utils/geocoder');
 
 // @desc        Get all training programs
 // @route       GET /api/v1/training-programs
@@ -36,7 +37,7 @@ exports.getTrainingProgram = asyncHandler(async (req, res, next) => {
 });
 
 // @desc        Create new training program
-// @route       POST /api/v1/training-program
+// @route       POST /api/v1/training-programs
 // @access      Private
 exports.createTrainingProgram = asyncHandler(async (req, res, next) => {
   const trainingProgram = await TrainingProgram.create(req.body);
@@ -45,7 +46,7 @@ exports.createTrainingProgram = asyncHandler(async (req, res, next) => {
 });
 
 // @desc        Update a training program
-// @route       PUT /api/v1/training-program/:id
+// @route       PUT /api/v1/training-programs/:id
 // @access      Private
 exports.updateTrainingProgram = asyncHandler(async (req, res, next) => {
   const trainingProgram = await TrainingProgram.findByIdAndUpdate(
@@ -68,7 +69,7 @@ exports.updateTrainingProgram = asyncHandler(async (req, res, next) => {
 });
 
 // @desc        Delete a training program
-// @route       DELETE /api/v1/training-program/:id
+// @route       DELETE /api/v1/training-programs/:id
 // @access      Private
 exports.deleteTrainingProgram = asyncHandler(async (req, res, next) => {
   const trainingProgram = await TrainingProgram.findByIdAndDelete(
@@ -83,4 +84,30 @@ exports.deleteTrainingProgram = asyncHandler(async (req, res, next) => {
   }
 
   res.status(200).json({ success: true, data: {} });
+});
+
+// @desc        Get training training programs in radius
+// @route       GET /api/v1/training-programs/radius/:postcode/:distance
+// @access      Public
+exports.getTrainingProgramsInRadius = asyncHandler(async (req, res, next) => {
+  const { postcode, distance } = req.params;
+
+  const loc = await geocoder.geocode(postcode);
+  const lat = loc[0].latitude;
+  const lon = loc[0].longitude;
+
+  // Divide distance by radius of Earth in miles
+  const radius = distance / 3963;
+
+  const trainingPrograms = await TrainingProgram.find({
+    location: { $geoWithin: { $centerSphere: [[lon, lat], radius] } },
+  });
+
+  console.log(trainingPrograms);
+
+  res.status(200).json({
+    success: true,
+    count: trainingPrograms.length,
+    data: trainingPrograms,
+  });
 });

@@ -62,9 +62,7 @@ exports.updateTrainingProgram = asyncHandler(async (req, res, next) => {
 // @route       DELETE /api/v1/training-programs/:id
 // @access      Private
 exports.deleteTrainingProgram = asyncHandler(async (req, res, next) => {
-  const trainingProgram = await TrainingProgram.findByIdAndDelete(
-    req.params.id
-  );
+  const trainingProgram = await TrainingProgram.findById(req.params.id);
 
   if (!trainingProgram) {
     return new ErrorResponse(
@@ -72,6 +70,8 @@ exports.deleteTrainingProgram = asyncHandler(async (req, res, next) => {
       400
     );
   }
+
+  await trainingProgram.deleteOne();
 
   res.status(200).json({ success: true, data: {} });
 });

@@ -13,13 +13,17 @@ const {
 const TrainingProgram = require('../models/TrainingProgram');
 const advancedResults = require('../middleware/advancedResults');
 
-const router = express('router');
+const courseRouter = require('./courses');
+
+router = express.Router();
+
+router.use('/:programId/courses', courseRouter);
 
 router.route('/radius/:postcode/:distance').get(getTrainingProgramsInRadius);
 
 router
   .route('/')
-  .get(advancedResults(TrainingProgram), getTrainingPrograms)
+  .get(advancedResults(TrainingProgram, 'courses'), getTrainingPrograms)
   .post(createTrainingProgram);
 
 router

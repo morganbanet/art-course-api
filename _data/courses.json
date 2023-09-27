@@ -1,0 +1,83 @@
+[
+  {
+    "title": "Art Foundations For Beginners",
+    "description": "This course is an introduction to the basic drawing and painting fundamentals necessary in developing a strong foundation for becoming an artist and will prepare for an entry into the industry.",
+    "weeks": 6,
+    "tuition": 450,
+    "minimumSkill": "Beginner",
+    "trainingProgram": "5d713995b721c3bb38c1f5d0",
+    "user": "5d7a514b5d2c12c7449be045"
+  },
+  {
+    "title": "Figure Drawing & Anatomy",
+    "description": "This course will teach students traditional drawing techniques to simply anatomy into basic shapes that will retain in memory and be used to develop a personal style of drawing.",
+    "weeks": 8,
+    "tuition": 600,
+    "minimumSkill": "Intermediate",
+    "trainingProgram": "5d713995b721c3bb38c1f5d0",
+    "user": "5d7a514b5d2c12c7449be045"
+  },
+  {
+    "title": "Color & Light",
+    "description": "This course explores the properties of color and light in a variety of conditions. Students should have a good understanding of perspective and sketching skills before joining the course.",
+    "weeks": 12,
+    "tuition": 550,
+    "minimumSkill": "Advanced",
+    "trainingProgram": "5d713995b721c3bb38c1f5d0",
+    "user": "5d7a514b5d2c12c7449be045"
+  },
+  {
+    "title": "Digital Portrait Painting",
+    "description": "This course goes over different color and texturing techniques for creating believable human portraits. By the end of the course, students will create one to two fully rendered portraits.",
+    "weeks": 14,
+    "tuition": 800,
+    "minimumSkill": "Advanced",
+    "trainingProgram": "650be4f6ee12dcc538fca216",
+    "user": "5d7a514b5d2c12c7449be045"
+  },
+  {
+    "title": "Creature Design",
+    "description": "This course teaches students how to design their own believable creatures using Earths animals as a guideline. Students will learn how to design creatures using basic forms, and see the importance of anatomy.",
+    "weeks": 6,
+    "tuition": 500,
+    "minimumSkill": "Intermediate",
+    "trainingProgram": "650be4f6ee12dcc538fca216",
+    "user": "5d7a514b5d2c12c7449be045"
+  },
+  {
+    "title": "Digital Environment Painting",
+    "description": "Designed for both both beginners and advanced artists. The course will focus on the fundamentals of painting. Lessons will include teaching students the medium, edge control, value, and composition.",
+    "weeks": 8,
+    "tuition": 540,
+    "minimumSkill": "Intermediate",
+    "trainingProgram": "650be50eee12dcc538fca218",
+    "user": "5d7a514b5d2c12c7449be045"
+  },
+  {
+    "title": "Blender For Concept Art",
+    "description": "This course has been designed to give students an overview of blenders main tools to use 3D software to create 2D images. Students will be able to create impressive scenes suitable for presentation.",
+    "weeks": 8,
+    "tuition": 700,
+    "minimumSkill": "Advanced",
+    "trainingProgram": "650be50eee12dcc538fca218",
+    "user": "5d7a514b5d2c12c7449be045"
+  },
+  {
+    "title": "Comics & Story Telling",
+    "description": "This course has been designed to give an introduction to comics and narrative. Students will learn how to create story boards and compose comic pages, and will go over techniques such as inking, coloring, and special FX.",
+    "weeks": 10,
+    "tuition": 560,
+    "minimumSkill": "Intermediate",
+    "trainingProgram": "650be519ee12dcc538fca21a",
+    "user": "5d7a514b5d2c12c7449be045"
+  },
+  {
+    "title": "Key Frame Illustation",
+    "description": "This course teaches students how to create cinematic key frame illustrations in a production setting, utilizing Photoshop and Blender to create project assets.",
+    "weeks": 9,
+    "tuition": 580,
+    "minimumSkill": "Advanced",
+    "trainingProgram": "650be519ee12dcc538fca21a",
+    "user": "5d7a514b5d2c12c7449be045"
+  }
+]

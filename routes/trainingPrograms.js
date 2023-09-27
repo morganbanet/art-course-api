@@ -9,11 +9,18 @@ const {
   deleteTrainingProgram,
 } = require('../controllers/trainingPrograms');
 
+// Advanced results
+const TrainingProgram = require('../models/TrainingProgram');
+const advancedResults = require('../middleware/advancedResults');
+
 const router = express('router');
 
 router.route('/radius/:postcode/:distance').get(getTrainingProgramsInRadius);
 
-router.route('/').get(getTrainingPrograms).post(createTrainingProgram);
+router
+  .route('/')
+  .get(advancedResults(TrainingProgram), getTrainingPrograms)
+  .post(createTrainingProgram);
 
 router
   .route('/:id')

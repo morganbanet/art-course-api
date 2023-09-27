@@ -7,17 +7,7 @@ const geocoder = require('../utils/geocoder');
 // @route       GET /api/v1/training-programs
 // @access      Public
 exports.getTrainingPrograms = asyncHandler(async (req, res, next) => {
-  const trainingPrograms = await TrainingProgram.find();
-
-  if (!trainingPrograms) {
-    return new ErrorResponse(`Training programs not found`, 400);
-  }
-
-  res.status(200).json({
-    success: true,
-    count: trainingPrograms.length,
-    data: trainingPrograms,
-  });
+  res.status(200).json(res.advancedResults);
 });
 
 // @desc        Get single training program

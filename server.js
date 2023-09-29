@@ -11,6 +11,7 @@ require('dotenv').config({ path: './config/config.env' });
 // Route imports
 const trainingPrograms = require('./routes/trainingPrograms');
 const courses = require('./routes/courses');
+const authentication = require('./routes/authentication');
 
 // Connect to database
 connectDB();
@@ -31,6 +32,7 @@ if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 // Route mounting
 app.use('/api/v1/training-programs', trainingPrograms);
 app.use('/api/v1/courses', courses);
+app.use('/api/v1/auth', authentication);
 
 // Error middleware
 app.use(errorHandler);

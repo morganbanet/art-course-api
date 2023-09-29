@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const fileupload = require('express-fileupload');
 const morgan = require('morgan');
 const connectDB = require('./config/db');
@@ -22,12 +23,13 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-
-// File upload
-app.use(fileupload());
+app.use(cookieParser());
 
 // Morgan config
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
+
+// File upload
+app.use(fileupload());
 
 // Route mounting
 app.use('/api/v1/training-programs', trainingPrograms);

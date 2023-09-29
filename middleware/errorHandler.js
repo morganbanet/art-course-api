@@ -27,6 +27,18 @@ function errorHandler(err, req, res, next) {
     error = new ErrorResponse(message, 400);
   }
 
+  // JSON Web Token Error
+  if (err.name === 'JsonWebTokenError') {
+    const message = 'Not authorized to access this resource';
+    error = new ErrorResponse(message, 401);
+  }
+
+  // JSON Web Token Expired
+  if (err.name === 'TokenExpiredError') {
+    const message = 'Token expires, please sign in again';
+    error = new ErrorResponse(message, 401);
+  }
+
   res
     .status(error.statusCode || 500)
     .json({ success: false, error: error.message || 'Internal server error' });

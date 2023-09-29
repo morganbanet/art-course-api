@@ -18,21 +18,25 @@ const courseRouter = require('./courses');
 
 router = express.Router();
 
+const { protect, authorize } = require('../middleware/authentication');
+
 router.use('/:programId/courses', courseRouter);
 
 router.route('/radius/:postcode/:distance').get(getTrainingProgramsInRadius);
 
-router.route('/:id/photo').put(uploadTrainingProgramPhoto);
+router
+  .route('/:id/photo')
+  .put(protect, authorize('publisher', 'admin'), uploadTrainingProgramPhoto);
 
 router
   .route('/')
   .get(advancedResults(TrainingProgram, 'courses'), getTrainingPrograms)
-  .post(createTrainingProgram);
+  .post(protect, authorize('publisher', 'admin'), createTrainingProgram);
 
 router
   .route('/:id')
   .get(getTrainingProgram)
-  .put(updateTrainingProgram)
-  .delete(deleteTrainingProgram);
+  .put(protect, authorize('publisher', 'admin'), updateTrainingProgram)
+  .delete(protect, authorize('publisher', 'admin'), deleteTrainingProgram);
 
 module.exports = router;

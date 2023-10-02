@@ -7,7 +7,8 @@ function errorHandler(err, req, res, next) {
   console.log(err.stack);
 
   // Dev logging
-  console.log(JSON.parse(JSON.stringify(err)));
+  // console.log(JSON.parse(JSON.stringify(err)));
+  console.log(err);
 
   // Bad object id
   if (err.name === 'CastError') {

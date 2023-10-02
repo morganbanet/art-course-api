@@ -1,41 +1,47 @@
 const mongoose = require('mongoose');
 
-const CourseSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: [true, 'Please add a title'],
-    maxlength: [50, 'Title cannot be more than 50 characters'],
-    unique: true,
-    trim: true,
+const CourseSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: [true, 'Please add a title'],
+      maxlength: [50, 'Title cannot be more than 50 characters'],
+      unique: true,
+      trim: true,
+    },
+    description: {
+      type: String,
+      required: [true, 'Please add a description'],
+      maxlength: [500, 'Description cannot be more than 500 characters'],
+    },
+    weeks: {
+      type: Number,
+      required: [true, 'Please add an amount of weeks'],
+    },
+    tuition: {
+      type: Number,
+      required: [true, 'Please add a tuition fee'],
+    },
+    minimumSkill: {
+      type: String,
+      required: [true, 'Please add a minimum skill'],
+      enum: ['Beginner', 'Intermediate', 'Advanced'],
+    },
+    trainingProgram: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Training Program',
+      required: true,
+    },
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: true,
+    },
   },
-  description: {
-    type: String,
-    required: [true, 'Please add a description'],
-    maxlength: [500, 'Description cannot be more than 500 characters'],
-  },
-  weeks: {
-    type: Number,
-    required: [true, 'Please add an amount of weeks'],
-  },
-  tuition: {
-    type: Number,
-    required: [true, 'Please add a tuition fee'],
-  },
-  minimumSkill: {
-    type: String,
-    required: [true, 'Please add a minimum skill'],
-    enum: ['Beginner', 'Intermediate', 'Advanced'],
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  trainingProgram: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Training Program',
-    required: true,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 // Get average cost of tuitions
 CourseSchema.statics.getAverageCost = async function (programId) {

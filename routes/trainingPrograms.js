@@ -10,15 +10,16 @@ const {
   deleteTrainingProgram,
 } = require('../controllers/trainingPrograms');
 
-// Advanced results
+const courseRouter = require('./courses');
 const TrainingProgram = require('../models/TrainingProgram');
 const advancedResults = require('../middleware/advancedResults');
-
-const courseRouter = require('./courses');
+const {
+  protect,
+  authorize,
+  checkOwnership,
+} = require('../middleware/authentication');
 
 router = express.Router();
-
-const { protect, authorize } = require('../middleware/authentication');
 
 router.use('/:programId/courses', courseRouter);
 
@@ -26,7 +27,12 @@ router.route('/radius/:postcode/:distance').get(getTrainingProgramsInRadius);
 
 router
   .route('/:id/photo')
-  .put(protect, authorize('publisher', 'admin'), uploadTrainingProgramPhoto);
+  .put(
+    protect,
+    authorize('publisher', 'admin'),
+    checkOwnership(TrainingProgram),
+    uploadTrainingProgramPhoto
+  );
 
 router
   .route('/')
@@ -36,7 +42,17 @@ router
 router
   .route('/:id')
   .get(getTrainingProgram)
-  .put(protect, authorize('publisher', 'admin'), updateTrainingProgram)
-  .delete(protect, authorize('publisher', 'admin'), deleteTrainingProgram);
+  .put(
+    protect,
+    authorize('publisher', 'admin'),
+    checkOwnership(TrainingProgram),
+    updateTrainingProgram
+  )
+  .delete(
+    protect,
+    authorize('publisher', 'admin'),
+    checkOwnership(TrainingProgram),
+    deleteTrainingProgram
+  );
 
 module.exports = router;

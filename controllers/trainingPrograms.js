@@ -31,6 +31,8 @@ exports.getTrainingProgram = asyncHandler(async (req, res, next) => {
 // @route       POST /api/v1/training-programs
 // @access      Private
 exports.createTrainingProgram = asyncHandler(async (req, res, next) => {
+  req.body.user = req.user.id;
+
   const trainingProgram = await TrainingProgram.create(req.body);
 
   res.status(201).json({ success: true, data: trainingProgram });

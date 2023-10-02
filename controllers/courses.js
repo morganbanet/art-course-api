@@ -44,6 +44,7 @@ exports.getCourse = asyncHandler(async (req, res, next) => {
 // @access      Private
 exports.createCourse = asyncHandler(async (req, res, next) => {
   req.body.trainingProgram = req.params.programId;
+  req.body.user = req.user.id;
 
   const trainingProgram = await TrainingProgram.findById(req.params.programId);
 

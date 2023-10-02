@@ -49,3 +49,30 @@ exports.authorize = (...roles) => {
     next();
   };
 };
+
+// Check if user is not admin, then ensure they are resource owner
+exports.checkOwnership = (model) =>
+  asyncHandler(async (req, res, next) => {
+    if (req.user.role !== 'admin') {
+      const reqId = req.params.id || req.params.programId;
+
+      const resource = await model.findById(reqId);
+
+      if (!resource) {
+        return next(
+          new ErrorResponse(`Resource not found with id ${reqId}`, 404)
+        );
+      }
+
+      if (resource.user.toString() !== req.user.id) {
+        return next(
+          new ErrorResponse(
+            `User ${req.user.id} not authorized to modify resource ${reqId}`,
+            403
+          )
+        );
+      }
+    }
+
+    next();
+  });

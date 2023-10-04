@@ -11,6 +11,7 @@ const {
 } = require('../controllers/trainingPrograms');
 
 const courseRouter = require('./courses');
+const reviewRouter = require('./reviews');
 const TrainingProgram = require('../models/TrainingProgram');
 const advancedResults = require('../middleware/advancedResults');
 const {
@@ -22,6 +23,7 @@ const {
 router = express.Router();
 
 router.use('/:programId/courses', courseRouter);
+router.use('/:programId/reviews', reviewRouter);
 
 router.route('/radius/:postcode/:distance').get(getTrainingProgramsInRadius);
 

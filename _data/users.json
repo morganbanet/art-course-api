@@ -31,7 +31,14 @@
     "_id": "651ac60a63f65c20d4c1ac3c",
     "name": "Erik Smith",
     "email": "erik@gmail.com",
-    "role": "publisher",
+    "role": "user",
+    "password": "123456"
+  },
+  {
+    "_id": "651c9bfe5b4c19cc4c7b9cd2",
+    "name": "Emily Stone",
+    "email": "emily@gmail.com",
+    "role": "user",
     "password": "123456"
   }
 ]

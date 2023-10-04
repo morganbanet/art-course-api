@@ -14,6 +14,7 @@ const trainingPrograms = require('./routes/trainingPrograms');
 const courses = require('./routes/courses');
 const authentication = require('./routes/authentication');
 const users = require('./routes/users');
+const reviews = require('./routes/reviews');
 
 // Connect to database
 connectDB();
@@ -37,6 +38,7 @@ app.use('/api/v1/training-programs', trainingPrograms);
 app.use('/api/v1/courses', courses);
 app.use('/api/v1/auth', authentication);
 app.use('/api/v1/users', users);
+app.use('/api/v1/reviews', reviews);
 
 // Error middleware
 app.use(errorHandler);

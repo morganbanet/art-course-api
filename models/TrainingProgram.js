@@ -66,7 +66,7 @@ const TrainingProgramSchema = new mongoose.Schema(
     averageRating: {
       type: Number,
       min: [1, 'The minimum rating must be 1'],
-      max: [5, 'The maximum rating is 5'],
+      max: [10, 'The maximum rating is 10'],
     },
     averageCost: Number,
     photo: {

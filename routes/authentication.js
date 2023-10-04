@@ -4,6 +4,7 @@ const {
   register,
   login,
   getMe,
+  logout,
   updateDetails,
   updatePassword,
   forgotPassword,
@@ -17,6 +18,7 @@ router = express.Router();
 router.route('/register').post(register);
 router.route('/login').post(login);
 router.route('/me').get(protect, getMe);
+router.route('/logout').get(protect, logout);
 router.route('/updateDetails').put(protect, updateDetails);
 router.route('/updatePassword').put(protect, updatePassword);
 router.route('/forgotpassword').post(forgotPassword);

@@ -1,10 +1,13 @@
 {
   "name": "creative-arts-institute-api",
   "version": "1.0.0",
+  "engines": {
+    "node": "v18.18.0"
+  },
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "SET NODE_ENV=production & node server",
+    "start": "NODE_ENV=production & node server",
     "dev": "nodemon server",
     "data:import": "node seeder",
     "data:flush": "node seeder -f"

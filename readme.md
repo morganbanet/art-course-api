@@ -1,6 +1,6 @@
 # Creative Arts Institute API
 
-Back-end only API for a art course directory website. Provides full CRUD functionality for training programs, courses, reviews, and users, and uses JSON Web Tokens for authenticaton.
+Back-end only API for a art course directory website. Provides full CRUD functionality for training programs, courses, reviews, and users. Uses JSON Web Tokens for authenticaton.
 
 ## Table of contents
 
@@ -12,16 +12,17 @@ Back-end only API for a art course directory website. Provides full CRUD functio
   - [Technologies](#technologies)
 - [Usage](#usage)
   - [Making requests](#making-requests)
-  - [Build app](#build-app)
-- [Future development](#future-development)
-- [Contact & Socials](#contact)
+  - [Build application](#build-application)
+  - [Run application](#run-application)
+- [Continued development](#continued-development)
+- [Contact & socials](#contact)
 - [Acknowledgements](#acknowledgements)
 
 ## Overview
 
 ### Features
 
-This API has the following features:
+This API contains the following features:
 
 - Handles full CRUD operations on programs, courses, reviews, and users
 - Provides search results within radius based on postcodes
@@ -35,13 +36,13 @@ This API has the following features:
 - Adds rate limiting of 100 requests per 10 minutes
 - Uses cors to make the API public
 
-### Screenshot
+### Screenshots
 
-![Request via Postman](./public/screenshot.png)
+![screenshot](./public/screenshot.png)
 
 ### Links
 
-- Creative Arts Institute API documentation: [https://creative-arts-institute-api.onrender.com/](https://creative-arts-institute-api.onrender.com/)
+- Devcamper documentation: [https://devcamper-td52.onrender.com](https://devcamper-td52.onrender.com)
 
 _Note that free instance types on Render will spin down with inactivity. Please allow a few minutes for the live site to load._
 
@@ -53,43 +54,41 @@ _Note that free instance types on Render will spin down with inactivity. Please 
 - [Express](http://expressjs.com/) - Web framework for Node
 - [MongoDB Atlas](https://www.mongodb.com/atlas) - NoSQL database in the cloud
 - [Mongoose](https://mongoosejs.com/) - Object modelling for MongoDB data
+- [Compass](https://www.mongodb.com/products/tools/compass) - GUI for MongoDB querying & analyzing
 - [Postman](https://www.postman.com/) - API testing & workspace environment
 - [Render](https://render.com/) - Hosting & deployment
 
 ## Usage
 
+Rename the "configenv" file in the config folder to "config.env" and update the values/settings appropiately.
+
 ### Making requests
 
-Make requests to the API using the following URL pattern. Please refer to the documentation to see each available request in more detail.
+Make request to the API using the following URL pattern. Refer to the documentation for more details.
 
 ```
 https://creative-arts-institute-api.onrender.com/api/v1/<resource>
 ```
 
-Requests are limited to 100 per 10 minute window. Requests exeecing this limit will respond with a timeout.
+Requests are limited to 100 per 10 minute window. Requests exceeding the limit will respond with a timeout.
 
-### Build app
-
-Rename the "configenv" file in the config folder to "config.env" and update the values/settings appropiately.
-
-#### Install dependencies
+### Install dependencies
 
 ```
 npm install
 ```
 
-#### Run app
+### Run application
 
 ```
 npm run dev       // Run in development
-npm run start     // Run in production
+npm run start    // Run in production
 ```
 
-## Future development
+## Continued development
 
-- Currently emails are stored in a Mailtrap test account, so will not reach a users inbox. Email delivery platform will be moved over to Sendgrid in future.
-
-- There is no front-end solution for the API. A front-end website for this API is considered for development.
+- Change email delivery platform from Mailtrap to SendGrid
+- Front-end solution built on the React framework
 
 ## Contact
 
@@ -97,8 +96,8 @@ npm run start     // Run in production
 - GitHub - [@morganbanet](https://github.com/morganbanet)
 - Twitter - [@morganbanet](https://twitter.com/morganbanet)
 
-Please refer to my [GitHub](https://gist.github.com/morganbanet) to find find my contact email.
+Contact email can be found via [GitHub](https://gist.github.com/morganbanet) profile.
 
 ## Acknowledgements
 
-This is a course based project from Brad Traversy's [Node.js API Masterclass With Express & MongoDB](https://www.udemy.com/course/nodejs-api-masterclass/) course on Udemy. The course has allowed to build APIs like this one. If you are interested in learning how to build your own APIs, please take a look at his course.
+Project and design is based on the [Node.js API Masterclass With Express & MongoDB course](https://www.udemy.com/course/nodejs-api-masterclass/) by Brad Traversy on Udemy.

@@ -42,7 +42,7 @@ This API contains the following features:
 
 ### Links
 
-- Devcamper documentation: [https://devcamper-td52.onrender.com](https://devcamper-td52.onrender.com)
+- Creative Arts Institute API documentation: [https://creative-arts-institute-api.onrender.com](https://creative-arts-institute-api.onrender.com)
 
 _Note that free instance types on Render will spin down with inactivity. Please allow a few minutes for the live site to load._
 
